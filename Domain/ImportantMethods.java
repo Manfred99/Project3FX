@@ -229,7 +229,59 @@ public class ImportantMethods {
         }
         return matrix;
     }
-    
+    public BlockBool[][] fillMatrixBool5(){
+        BlockBool[][] matrix = new BlockBool[7][14];
+        BlockBool block;
+        
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[0].length; j++) {
+                if(i==1&&j<=3){
+                    block = new BlockBool(false, false, false, true);
+                }else if (i==1 &&j==4){
+                    block = new BlockBool(false, true, true, false);
+                }
+                else if(i>=2&&i<=4&&j==4){
+                    block = new BlockBool(false, false, true, false);
+                }
+                else if(i==5&&j==4){
+                    block = new BlockBool(true, false, false, true);
+                }
+                else if(i==5&&j==5){
+                    block = new BlockBool(false, false, false, true);
+                }
+                else if(i==5&&j==6){
+                    block = new BlockBool(true, true, false, false);
+                }
+                else if(i>=2&&i<=4&&j==6){
+                    block = new BlockBool(true, false, false, false);
+                }
+                else if(i==1&&j==6){
+                    block = new BlockBool(false, false, true, true);
+                }
+                else if(i==1&&j==7){
+                    block = new BlockBool(false, false, false, true);
+                }
+                else if(i==1&&j==8){
+                    block = new BlockBool(false, true, true, false);
+                }
+                else if(i>=2&&i<=4&&j==8){
+                    block = new BlockBool(false, false, true, false);
+                }
+                else if(i==5&&j==8){
+                    block = new BlockBool(true, false, false, true);
+                }
+                else if(i==5&&j>=8&&j<13){
+                    block = new BlockBool(false, false, false, true);
+                }
+                else{
+                    block = new BlockBool(false, false, false, false);
+                }
+                
+                matrix[i][j]=block;
+            }
+        }
+        return matrix;
+    }
     
     
 }

@@ -137,7 +137,7 @@ public class Window extends Application implements Runnable{
             
             //Inicializamos cada hilo (personaje) y lo iniciamos
             
-            matrixBool=important.fillMatrixBool4();
+            matrixBool=important.fillMatrixBool5();
             matrixNum= important.fillMatixNum();
             this.rc = new RunningCharacter(80, 190, 0, matrixBool,matrixNum);
             
