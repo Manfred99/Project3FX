@@ -7,12 +7,27 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.scene.image.Image;
 
+/**
+ * Clase encargada de hacer que el sprite haga la simulacion de que se mueve en
+ * el tablero del laberinto extiende a Character para poder obtener la informacion
+ * de la imagen que se va a utilizar
+ * 
+ */
 public class RunningCharacter extends Character {
 
     BlockNum[][] matrixNum;
     BlockBool[][] matrixBool;
     boolean callejon = false;
 
+    /**
+     * Constructor
+     * @param x coordenada x inicial del caracter
+     * @param y coordenada y inicial del caracter
+     * @param imgNum numero del sprite que se va a utilizar
+     * @param matrixBool matriz booleana que se va a utilizar decisiones
+     * @param matrixNum matriz numerica que se va a utilizar coordenadas
+     * @throws FileNotFoundException tira una excepcion en caso de que no se encuentre el archivo
+     */
     public RunningCharacter(int x, int y, int imgNum, BlockBool[][] matrixBool, BlockNum[][] matrixNum) throws FileNotFoundException {
         super(x, y, imgNum);
         this.matrixBool = matrixBool;
@@ -20,6 +35,11 @@ public class RunningCharacter extends Character {
         setSprite();
     }
 
+    /**
+     * Establece un ArrayList de Image y lo llena con imagenes de los sprites 
+     * que se utilizan en el laberinto
+     * @throws FileNotFoundException tira una excepcion en caso de que no se encuentre el archivo
+     */
     public void setSprite() throws FileNotFoundException {
 
         ArrayList<Image> sprite = super.getSprite();
@@ -29,6 +49,10 @@ public class RunningCharacter extends Character {
         }
     }
 
+    /**
+     * Metodo que se encarga de que el hilo corra para poder simular el
+     * movimiento del caracter
+     */
     @Override
     public void run() {
         ArrayList<Image> sprite = super.getSprite();
