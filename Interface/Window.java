@@ -3,6 +3,7 @@ package Interface;
 import Domain.BlockBool;
 import Domain.BlockNum;
 import Domain.ImportantMethods;
+import Domain.MovingItem;
 import Domain.RunningCharacter;
 import Utility.Variables;
 import java.io.FileNotFoundException;
@@ -38,6 +39,7 @@ public class Window extends Application implements Runnable {
     private BlockNum[][] matrixNum;
     private BlockBool[][] matrixBool;
     private RunningCharacter rc;
+    private MovingItem mi;
     private boolean start = false;
     ImportantMethods important = new ImportantMethods();
 
@@ -129,6 +131,7 @@ public class Window extends Application implements Runnable {
                 this.start = true;
 
                 this.rc.start();
+                this.mi.start();
 
             });
             mI_Exit.setOnAction((event) -> {
@@ -145,7 +148,8 @@ public class Window extends Application implements Runnable {
             matrixBool = important.fillMatrixBool5();
             matrixNum = important.fillMatixNum();
             this.rc = new RunningCharacter(80, 190, 0, matrixBool, matrixNum);
-
+            this.mi = new MovingItem(80, 190, 0, matrixBool, matrixNum);
+            
             this.thread = new Thread(this);
             this.thread.start();
         } catch (BufferOverflowException ex) {
@@ -166,6 +170,7 @@ public class Window extends Application implements Runnable {
 
         important.drawMaze(gc, matrixBool, matrixNum);
         gc.drawImage(this.rc.getImage(), this.rc.getX(), this.rc.getY());
+        gc.drawImage(this.mi.getImage(), this.mi.getX(), 170);
     }
 
     EventHandler<WindowEvent> exit = new EventHandler<WindowEvent>() {

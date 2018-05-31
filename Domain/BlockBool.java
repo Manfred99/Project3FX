@@ -29,15 +29,16 @@ public class BlockBool {
 
     /**
      * getA
+     *
      * @return retorna el valor del lado a
      */
-
     public boolean getA() {
         return a;
     }
 
     /**
      * setA
+     *
      * @param a establece el valor que se le da al lado a
      */
     public void setA(boolean a) {
@@ -46,6 +47,7 @@ public class BlockBool {
 
     /**
      * getB
+     *
      * @return retorna el valor del lado b
      */
     public boolean getB() {
@@ -54,6 +56,7 @@ public class BlockBool {
 
     /**
      * setB
+     *
      * @param b establece el valor que se le da al lado b
      */
     public void setB(boolean b) {
@@ -62,6 +65,7 @@ public class BlockBool {
 
     /**
      * getC
+     *
      * @return retorna el valor del lado c
      */
     public boolean getC() {
@@ -70,6 +74,7 @@ public class BlockBool {
 
     /**
      * setC
+     *
      * @param c establece el valor que se le da al lado c
      */
     public void setC(boolean c) {
@@ -78,14 +83,16 @@ public class BlockBool {
 
     /**
      * getD
+     *
      * @return retorna el valor del lado d
      */
     public boolean getD() {
         return d;
     }
 
-     /**
+    /**
      * setD
+     *
      * @param d establece el valor que se le da al lado d
      */
     public void setD(boolean d) {
@@ -93,7 +100,7 @@ public class BlockBool {
     }
 
     /**
-     * 
+     *
      * @return String retorna un string con los valores asignados a los
      * diferentes lados a, b, c y d del bloque creado
      */
