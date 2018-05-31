@@ -107,14 +107,36 @@ public class RunningCharacter extends Character {
                         }
 
                         //Thread.sleep(600);
-                    } else {
+                    }
+                    else {
                         callejon = true;
                     }
-                } else {
+                    
+                } 
+                if(callejon) {
 
-                    if (matrixBool[i][j].getA()) {
-
+                    if (matrixBool[i][j].getA()&&!matrixBool[i][j].getB()&&!matrixBool[i][j].getC()&&!matrixBool[i][j].getD()) {
+                        System.out.println("Si");
                         numBlock = matrixNum[i][j];
+                        x = ((numBlock.getB() + numBlock.getD()) / 2)-39;
+                        w = ((numBlock.getA() + numBlock.getC()) / 2)-39;
+
+                        for (int k = w; k < numBlock.getC(); k++) {
+
+                            super.setImage(sprite.get(0));
+
+                            super.setX(x);
+                            super.setY(k);
+                            Thread.sleep(10);
+                        }
+                        i++;
+
+                        if (i == 7) {
+                            i = 1;
+                        }
+                    }else if (matrixBool[i][j].getA()&&matrixBool[i][j].getD()&&!matrixBool[i][j].getB()&&!matrixBool[i][j].getC()) {
+
+                       numBlock = matrixNum[i][j];
                         x = ((numBlock.getB() + numBlock.getD()) / 2)-38;
                         w = numBlock.getC()-40;
                         for (int k = w; k >= numBlock.getA()-40; k--) {
@@ -131,8 +153,30 @@ public class RunningCharacter extends Character {
                         if (i == -1) {
                             i = 0;
                         }
-                    }else if (matrixBool[i][j].getC()) {
 
+                    }else if (matrixBool[i][j].getA()&&matrixBool[i][j].getB()&&!matrixBool[i][j].getC()&&!matrixBool[i][j].getD()) {
+
+                       numBlock = matrixNum[i][--j];
+                       
+                        w = ((numBlock.getA() + numBlock.getC()) / 2)-10;
+                        super.setImage(sprite.get(0));
+                        for (int k = numBlock.getD(); k >numBlock.getB()-80  ; k--) {
+                            
+                            super.setImage(sprite.get(0));
+
+                            super.setX(k);
+                            super.setY(w);
+                            Thread.sleep(10);
+                        }
+                        j--;
+
+                        if (j == -1) {
+                            j = 13;
+                        }
+
+
+                    }else if (matrixBool[i][j].getC()&&!matrixBool[i][j].getB()&&!matrixBool[i][j].getA()&&!matrixBool[i][j].getD()) {
+                        
                         numBlock = matrixNum[i][j];
                         x = ((numBlock.getB() + numBlock.getD()) / 2) - 39;
                         w = ((numBlock.getA() + numBlock.getC()) / 2) - 39;
@@ -152,6 +196,48 @@ public class RunningCharacter extends Character {
                             i = 6;
                         }
 
+                    }else if (matrixBool[i][j].getC()&&matrixBool[i][j].getD()&&!matrixBool[i][j].getA()&&!matrixBool[i][j].getB()) {
+                        
+                        numBlock = matrixNum[i][j];
+                        x = ((numBlock.getB() + numBlock.getD()) / 2) - 39;
+                        w = ((numBlock.getA() + numBlock.getC()) / 2) - 39;
+
+                        for (int k = numBlock.getA(); k < numBlock.getC(); k++) {
+
+                            super.setImage(sprite.get(0));
+
+                            super.setX(x);
+                            super.setY(k);
+                            Thread.sleep(10);
+                        }
+
+                        i++;
+
+                        if (i == -1) {
+                            i = 6;
+                        }
+                        //Thread.sleep(100);
+                    }else if (matrixBool[i][j].getC()&&matrixBool[i][j].getB()) {
+                        
+                        numBlock = matrixNum[i][--j];
+                       
+                        w = ((numBlock.getA() + numBlock.getC()) / 2)-10;
+                        super.setImage(sprite.get(0));
+                        for (int k = numBlock.getD(); k >numBlock.getB()-80  ; k--) {
+                            
+                            super.setImage(sprite.get(0));
+
+                            super.setX(k);
+                            super.setY(w);
+                            Thread.sleep(10);
+                        }
+                        j--;
+
+                        if (j == -1) {
+                            j = 13;
+                        }
+
+                        //Thread.sleep(100);
                     }else if (blockTrue(matrixBool[i][j-1])) {
                         
                         numBlock = matrixNum[i][--j];
@@ -176,6 +262,7 @@ public class RunningCharacter extends Character {
                     }  else {
                         callejon = false;
                     }
+                    
                 }
 
             } catch (InterruptedException ex) {
