@@ -296,8 +296,8 @@ public class RunningCharacter extends Character {
         }
 
     }
-    public boolean blockTrue(BlockBool b){
-        return b.getA()||b.getB()||b.getC()||b.getD();
+    public boolean blockTrue(BlockBool b) {
+        return b.getA() || b.getB() || b.getC() || b.getD();
     }
             
 }

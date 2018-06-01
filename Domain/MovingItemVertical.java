@@ -16,7 +16,7 @@ import javafx.scene.image.Image;
  *
  * @author jeanp
  */
-public class MovingItem extends Character {
+public class MovingItemVertical extends Character{
 
     BlockNum[][] matrixNum;
     BlockBool[][] matrixBool;
@@ -33,13 +33,13 @@ public class MovingItem extends Character {
      * @throws FileNotFoundException tira una excepcion en caso de que no se
      * encuentre el archivo
      */
-    public MovingItem(int x, int y, int imgNum, BlockBool[][] matrixBool, BlockNum[][] matrixNum) throws FileNotFoundException {
+    public MovingItemVertical(int x, int y, int imgNum, BlockBool[][] matrixBool, BlockNum[][] matrixNum) throws FileNotFoundException {
         super(x, y, imgNum);
         this.matrixBool = matrixBool;
         this.matrixNum = matrixNum;
         setSprite();
     }
-
+    
     /**
      * Establece un ArrayList de Image y lo llena con imagenes de los sprites
      * que se utilizan en el laberinto
@@ -55,8 +55,8 @@ public class MovingItem extends Character {
             sprite.add(new Image(new FileInputStream("src/Assets/berryItemSprite75x75.png")));
         }
     }
-
-    /**
+    
+     /**
      * Metodo que se encarga de que el hilo corra para poder simular el
      * movimiento del item
      */
@@ -76,59 +76,57 @@ public class MovingItem extends Character {
         while (true) {
             try {
                 if (!callejon) {
-                    //movimiento hacia la derecha
-                    /*******Movimiento horizontal*******/
-                    if (blockTrue(matrixBool[i][j + 1])) {
+                    if (matrixBool[i][j].getC()&&matrixBool[i][j].getD()&&!matrixBool[i][j].getA()&&!matrixBool[i][j].getB()) {
+                        
                         numBlock = matrixNum[i][j];
                         x = ((numBlock.getB() + numBlock.getD()) / 2) - 39;
-                        w = ((numBlock.getA() + numBlock.getC()) / 2) - 10;
-                        super.setImage(sprite.get(0));
-                        for (int k = x; k < numBlock.getD(); k++) {
+                        w = ((numBlock.getA() + numBlock.getC()) / 2) - 39;
+
+                        for (int k = numBlock.getA(); k < numBlock.getC(); k++) {
 
                             super.setImage(sprite.get(0));
 
-                            super.setX(k);
-                            super.setY(w);
+                            super.setX(x);
+                            super.setY(k);
                             Thread.sleep(10);
                         }
-                        j++;
 
-                        if (j == 14) {
-                            j = 0;
+                        i++;
+
+                        if (i == -1) {
+                            i = 6;
+                        }
+                        //Thread.sleep(100);
+                    }else if (matrixBool[i][j].getA()) {
+
+                        numBlock = matrixNum[i][j];
+                        x = ((numBlock.getB() + numBlock.getD()) / 2)-38;
+                        w = numBlock.getC()-40;
+                        for (int k = w; k >= numBlock.getA()-40; k--) {
+
+                            super.setImage(sprite.get(0));
+                            super.setX(x);
+                            super.setY(k);
+                            Thread.sleep(10);
                         }
 
-                        //Thread.sleep(100);
-                        //movimiento hacia la derecha
-                    }else if (blockTrue(matrixBool[i][j-1])) {
                         
-                        numBlock = matrixNum[i][--j];
-                       
-                        w = ((numBlock.getA() + numBlock.getC()) / 2)-10;
-                        super.setImage(sprite.get(0));
-                        for (int k = numBlock.getD(); k >numBlock.getB()-80  ; k--) {
-                            
-                            super.setImage(sprite.get(0));
+                        i--;
 
-                            super.setX(k);
-                            super.setY(w);
-                            Thread.sleep(10);
+                        if (i == -1) {
+                            i = 0;
                         }
-                        j--;
 
-                        if (j == -1) {
-                            j = 13;
-                        }
-                        //Thread.sleep(100);
+                        //Thread.sleep(600);
                     }
-                    /*******Movimiento horizontal*******/
                 }
-            } catch (InterruptedException ex) {
+            }catch (InterruptedException ex) {
                 Logger.getLogger(RunningCharacter.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-    }
-
-    public boolean blockTrue(BlockBool b) {
-        return b.getA() || b.getB() || b.getC() || b.getD();
+    };
+    
+    public boolean blockTrue(BlockBool b){
+        return b.getA()||b.getB()||b.getC()||b.getD();
     }
 }

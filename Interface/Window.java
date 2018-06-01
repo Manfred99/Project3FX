@@ -4,6 +4,7 @@ import Domain.BlockBool;
 import Domain.BlockNum;
 import Domain.ImportantMethods;
 import Domain.MovingItem;
+import Domain.MovingItemVertical;
 import Domain.RunningCharacter;
 import Utility.Variables;
 import java.io.FileNotFoundException;
@@ -40,6 +41,7 @@ public class Window extends Application implements Runnable {
     private BlockBool[][] matrixBool;
     private RunningCharacter rc;
     private MovingItem mi;
+    private MovingItemVertical miv;
     private boolean start = false;
     ImportantMethods important = new ImportantMethods();
 
@@ -54,13 +56,16 @@ public class Window extends Application implements Runnable {
         primaryStage.setTitle("Maze runner");
         initComponents(primaryStage);
         primaryStage.setOnCloseRequest(exit);
+        GraphicsContext gc = this.canvas.getGraphicsContext2D();
+        
         canvas.setOnMouseClicked((event) -> {
             double x = event.getX();
             double y = event.getY();
-
+drawItem(gc);
             if (x >= 70 && x <= 1200 && y >= 70 && y <= 640) {
                 System.out.println("Equis" + x);
                 System.out.println("Ye" + y);
+                
                 BlockNum temp;
                 BlockBool tempBool;
                 for (int i = 0; i < matrixNum.length; i++) {
@@ -104,6 +109,9 @@ public class Window extends Application implements Runnable {
                 GraphicsContext gc = this.canvas.getGraphicsContext2D();
                 if (this.start) {
                     draw(gc);
+                    canvas.setOnMouseClicked((event) -> {
+                        
+                    });
                 }
 
             } catch (InterruptedException ex) {
@@ -132,6 +140,7 @@ public class Window extends Application implements Runnable {
 
                 this.rc.start();
                 this.mi.start();
+                this.miv.start();
 
             });
             mI_Exit.setOnAction((event) -> {
@@ -149,6 +158,7 @@ public class Window extends Application implements Runnable {
             matrixNum = important.fillMatixNum();
             this.rc = new RunningCharacter(80, 190, 0, matrixBool, matrixNum);
             this.mi = new MovingItem(80, 190, 0, matrixBool, matrixNum);
+             this.miv = new MovingItemVertical(80, 190, 0, matrixBool, matrixNum);
             
             this.thread = new Thread(this);
             this.thread.start();
@@ -169,8 +179,13 @@ public class Window extends Application implements Runnable {
         important.drawTable(80, 640, 1200, gc);
 
         important.drawMaze(gc, matrixBool, matrixNum);
-        gc.drawImage(this.rc.getImage(), this.rc.getX(), this.rc.getY());
-        gc.drawImage(this.mi.getImage(), this.mi.getX(), 170);
+        gc.drawImage(this.rc.getImage(), this.rc.getX(), this.rc.getY());   
+        drawItem(gc);
+    }
+    
+    private void drawItem(GraphicsContext gc){
+        gc.drawImage(this.mi.getImage(), this.mi.getX(), this.mi.getY());
+        gc.drawImage(this.miv.getImage(), this.miv.getX(), this.miv.getY());
     }
 
     EventHandler<WindowEvent> exit = new EventHandler<WindowEvent>() {
