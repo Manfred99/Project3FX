@@ -273,4 +273,131 @@ public class ImportantMethods {
         return matrix;
     }
 
+    public BlockBool[][] fillMatrixBool6() {
+        BlockBool[][] matrix = new BlockBool[7][14];
+        BlockBool block;
+
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[0].length; j++) {
+                if (i == 1 && j <= 3) {
+                    block = new BlockBool(false, false, false, true);
+                } else {
+                    block = new BlockBool(false, false, false, false);
+                }
+
+                matrix[i][j] = block;
+            }
+        }
+        return matrix;
+    }
+
+    public BlockBool[][] fillMatrixBool7() {
+        BlockBool[][] matrix = new BlockBool[7][14];
+        BlockBool block;
+
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[0].length; j++) {
+                if (i == 1 && j <= 2) {
+                    block = new BlockBool(false, false, false, true);
+                } 
+                else if (i == 1 && j == 3) {
+                    block = new BlockBool(false, true, true, false);//esquina 1
+                } 
+                else if (i == 2 && j == 3) {
+                    block = new BlockBool(false, false, true, false);
+                } 
+                else if (i == 3 && j <= 4&&j!=3) {
+                    block = new BlockBool(false, false, false, true);
+                }
+                else if (i == 3 && j==3) {
+                    block = new BlockBool(true, true, true, true);
+                    //block = new BlockBool(false, false, false, false);
+                }
+                else if (i == 4 && j == 3) {
+                    block = new BlockBool(true, false, false, false);
+                }
+                else if (i == 5 && j <= 2) {
+                    block = new BlockBool(false, false, false, true);
+                }
+                else if (i == 5 && j == 3) {
+                    block = new BlockBool(true, true, false, false);//esquina 2
+                }
+                else if (i == 3 && j == 5) {
+                    block = new BlockBool(true, true, false, false);//esquina 3
+                }
+                else if (i == 2 && j == 5) {
+                    block = new BlockBool(true, false, false, false);
+                } 
+                else if (i == 1 && j == 5) {
+                    block = new BlockBool(false, false, true, true);//esquina 4
+                }
+                else if (i == 1 && j==6) {
+                    block = new BlockBool(false, false, false, true);
+                }
+                else if (i == 1 && j == 7) {//Aqui puedo hacer algo si se cae
+                    block = new BlockBool(false, true, true, true);
+                } 
+                else if (i == 1 && j == 8) {
+                    block = new BlockBool(false, true, false, false);
+                }
+                else if (i >=2&&i<=4 && j == 7) {
+                    block = new BlockBool(false, false, true, false);
+                }
+                else if (i==5 && j == 6) {
+                    block = new BlockBool(false, false, false, true);
+                }
+                else if (i==5 && j == 7) {
+                    block = new BlockBool(true, false, false, true);//Aqui puedo hacer algo tambien 
+                }
+                else if (i==5 && j >=8&&j<=9) {
+                    block = new BlockBool(false, false, false, true);
+                }
+                else if (i==5 && j==10) {
+                    block = new BlockBool(true, true, false, true);//Aqui puedo hacer algo tambien 
+                }
+                else if (i==3&& j==10) {
+                    block = new BlockBool(false, false, true, false);
+                }
+                else if (i==4&& j==10) {
+                    block = new BlockBool(true, false, false, false);
+                }
+                else if (i==5&& j>=11&&j<=13) {
+                    block = new BlockBool(false, false, false, true);
+                }
+//                else if (i == 5 && j == 5) {
+//                    block = new BlockBool(false, false, false, true);
+//                } 
+//                else if (i == 5 && j == 6) {
+//                    block = new BlockBool(true, true, false, false);
+//                } 
+//                else if (i >= 2 && i <= 4 && j == 6) {
+//                    block = new BlockBool(true, false, false, false);
+//                } 
+//                else if (i == 1 && j == 6) {
+//                    block = new BlockBool(false, false, true, true);
+//                } 
+//                else if (i == 1 && j == 7) {
+//                    block = new BlockBool(false, false, false, true);
+//                } 
+//                else if (i == 1 && j == 8) {
+//                    block = new BlockBool(false, true, true, false);
+//                } 
+//                else if (i >= 2 && i <= 4 && j == 8) {
+//                    block = new BlockBool(false, false, true, false);
+//                } 
+//                else if (i == 5 && j == 8) {
+//                    block = new BlockBool(true, false, false, true);
+//                } 
+//                else if (i == 5 && j >= 8 && j < 13) {
+//                    block = new BlockBool(false, false, false, true);
+//                } 
+                else {
+                    block = new BlockBool(false, false, false, false);
+                }
+
+                matrix[i][j] = block;
+            }
+        }
+        return matrix;
+    }
 }

@@ -20,8 +20,19 @@ public class MovingItem extends Character {
 
     BlockNum[][] matrixNum;
     BlockBool[][] matrixBool;
-    boolean callejon = false;
-
+    boolean horizontal;
+    boolean abajo;
+    int i = 0;
+    int j = 0;
+    int cantCuadros;
+    int l;
+    int r;
+    int h;
+    int sleep;
+    boolean derecha;
+    BufferMemory memory = new BufferMemory();
+    BufferMemoryFurious memory2 = new BufferMemoryFurious();
+    BufferMemoryFast memory3 = new BufferMemoryFast();
     /**
      * Constructor
      *
@@ -33,11 +44,37 @@ public class MovingItem extends Character {
      * @throws FileNotFoundException tira una excepcion en caso de que no se
      * encuentre el archivo
      */
-    public MovingItem(int x, int y, int imgNum, BlockBool[][] matrixBool, BlockNum[][] matrixNum) throws FileNotFoundException {
+    public MovingItem(int x, int y, int imgNum, BlockBool[][] matrixBool, BlockNum[][] matrixNum, boolean direction,int i, int j) throws FileNotFoundException {
         super(x, y, imgNum);
         this.matrixBool = matrixBool;
         this.matrixNum = matrixNum;
+        this.horizontal = direction;
         setSprite();
+        this.i = i;
+        this.j = j;
+        this.sleep = 20;
+        if (horizontal) {
+            if (matrixBool[i][j].getD()) {
+                derecha = true;
+            } else {
+
+                derecha = false;
+
+              
+            }
+        } else {
+            
+            if (matrixBool[i][j].getA()||matrixBool[i][j].getC()) {
+                abajo = true;
+            } else if (matrixBool[i][j].getB()||matrixBool[i][j].getD()) {
+
+                abajo = false;
+
+              
+            }
+
+        }
+
     }
 
     /**
@@ -68,20 +105,31 @@ public class MovingItem extends Character {
         BlockBool tempStartBool = matrixBool[1][0];
         BlockNum numBlock = tempStartNum;
         BlockBool boolBlock = tempStartBool;
-        int i = 1;
-        int j = 6;
+        
+
         int x = 1;
         int w = 0;
 
         while (true) {
             try {
-                if (!callejon) {
+                memory.setItemI(i);
+                memory.setItemJ(j);
+                memory2.setItemJ(j);
+                memory2.setItemI(i);
+                memory3.setItemJ(j);
+                memory3.setItemI(i);
+                if (horizontal) {
+
                     //movimiento hacia la derecha
-                    /*******Movimiento horizontal*******/
-                    if (blockTrue(matrixBool[i][j + 1])) {
+                    /**
+                     * *****Movimiento horizontal******
+                     */
+                    if (j+1!=14&&blockTrue(matrixBool[i][j + 1])&&derecha) {
                         numBlock = matrixNum[i][j];
+                        
+                         
                         x = ((numBlock.getB() + numBlock.getD()) / 2) - 39;
-                        w = ((numBlock.getA() + numBlock.getC()) / 2) - 10;
+                        w = ((numBlock.getA() + numBlock.getC()) / 2) - 20;
                         super.setImage(sprite.get(0));
                         for (int k = x; k < numBlock.getD(); k++) {
 
@@ -89,41 +137,95 @@ public class MovingItem extends Character {
 
                             super.setX(k);
                             super.setY(w);
-                            Thread.sleep(10);
+                            Thread.sleep(sleep);
                         }
                         j++;
 
-                        if (j == 14) {
-                            j = 0;
-                        }
+                        
 
                         //Thread.sleep(100);
-                        //movimiento hacia la derecha
-                    }else if (blockTrue(matrixBool[i][j-1])) {
+                        //movimiento hacia la izquierda
+                    }else {
+                        derecha = false;
+                    }
+                    if (j-1!=-1&&blockTrue(matrixBool[i][j - 1])&&!derecha) {
+
+                        numBlock = matrixNum[i][j];
                         
-                        numBlock = matrixNum[i][--j];
-                       
-                        w = ((numBlock.getA() + numBlock.getC()) / 2)-10;
+                        w = ((numBlock.getA() + numBlock.getC()) / 2) - 20;
                         super.setImage(sprite.get(0));
-                        for (int k = numBlock.getD(); k >numBlock.getB()-80  ; k--) {
-                            
+                        for (int k = numBlock.getD()-50; k > numBlock.getB() - 50; k--) {
+
                             super.setImage(sprite.get(0));
 
                             super.setX(k);
                             super.setY(w);
-                            Thread.sleep(10);
+                            Thread.sleep(sleep);
                         }
                         j--;
 
-                        if (j == -1) {
-                            j = 13;
-                        }
+                        
+
                         //Thread.sleep(100);
+                    }else {
+                        derecha = true;
                     }
-                    /*******Movimiento horizontal*******/
+
+                } else {
+                    /**
+                     * *****Movimiento vertical******
+                     */
+
+                    if (blockTrue(matrixBool[i + 1][j]) && abajo) {
+                        numBlock = matrixNum[i][j];
+                        
+                        w = ((numBlock.getB() + numBlock.getD()) / 2) - 39;
+
+                        for (int k = numBlock.getA(); k < numBlock.getC(); k++) {
+
+                            super.setImage(sprite.get(0));
+
+                            super.setX(w);
+                            super.setY(k);
+                            Thread.sleep(sleep);
+                        }
+                        i++;
+                        
+
+                        
+                        
+                    } else {
+                        abajo = false;
+                    }
+                    if (blockTrue(matrixBool[i - 1][j]) && !abajo) {
+                          
+                        numBlock = matrixNum[i][j];
+                        
+                        x = ((numBlock.getB() + numBlock.getD()) / 2) - 38;
+
+                        for (int k = numBlock.getC()-60; k >= numBlock.getA()-60; k--) {
+
+                            super.setImage(sprite.get(0));
+                            super.setX(x);
+                            super.setY(k);
+                            Thread.sleep(sleep);
+                        }
+
+                        i--;
+                        
+                        
+                        if (i == -1) {
+                            i = 0;
+                        }
+                        
+                    } else {
+                        abajo = true;
+                    }
+                    
                 }
+                
             } catch (InterruptedException ex) {
-                Logger.getLogger(RunningCharacter.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Fast.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
