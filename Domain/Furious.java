@@ -7,6 +7,7 @@ import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.scene.image.Image;
+import tdaCola.ColaException;
 
 /**
  * Clase encargada de hacer que el sprite haga la simulacion de que se mueve en
@@ -19,9 +20,11 @@ public class Furious extends Character {
     BlockNum[][] matrixNum;
     BlockBool[][] matrixBool;
     boolean callejon = false;
-    long sleep = 10;
+    long sleep = 12;
     BufferMemoryFurious memory = new BufferMemoryFurious();
-
+    BufferMemoryFast memory2= new BufferMemoryFast();
+    BufferMemory memory3= new BufferMemory();
+    
     boolean changeImages;
     int i;
     int j;
@@ -145,7 +148,9 @@ public class Furious extends Character {
 
                     changeImages = true;
                     memory.setEaten(true);
+                   
                 }
+                
                 Thread.sleep(sleep);
             } catch (InterruptedException ex) {
                 Logger.getLogger(Furious.class.getName()).log(Level.SEVERE, null, ex);
@@ -186,6 +191,7 @@ public class Furious extends Character {
                     changeImages = true;
                     memory.setEaten(true);
                 }
+                
                 Thread.sleep(sleep);
             } catch (InterruptedException ex) {
                 Logger.getLogger(Furious.class.getName()).log(Level.SEVERE, null, ex);
@@ -227,6 +233,7 @@ public class Furious extends Character {
                     memory.setEaten(true);
 
                 }
+                
                 Thread.sleep(sleep);
             } catch (InterruptedException ex) {
                 Logger.getLogger(Furious.class.getName()).log(Level.SEVERE, null, ex);
@@ -269,6 +276,7 @@ public class Furious extends Character {
                     changeImages = true;
                     memory.setEaten(true);
                 }
+                
                 Thread.sleep(sleep);
             } catch (InterruptedException ex) {
                 Logger.getLogger(Furious.class.getName()).log(Level.SEVERE, null, ex);
@@ -292,7 +300,8 @@ public class Furious extends Character {
                 } else if (i - 1 == -1 || j - 1 == -1) {
                     callejon = false;
                 }
-
+                
+                
                 memory.setFuriousI(i);
                 memory.setFuriousJ(j);
                 memory.setCallejonFurious(callejon);
@@ -337,6 +346,7 @@ public class Furious extends Character {
                     else {
                         callejon = true;
                     }
+
 
                 }
                 if (callejon) {
@@ -420,6 +430,7 @@ public class Furious extends Character {
                             changeImages = false;
                             prove();
                         }
+                        
 
                     } else if (matrixBool[i][j].getC() && matrixBool[i][j].getD()) {
                         int aleatorio = getAleatorio(2);
@@ -482,14 +493,15 @@ public class Furious extends Character {
                     } else {
                         callejon = false;
                     }
-//
-                }
 
+                }
+                
             }
         } catch (InterruptedException ex) {
 
             Logger.getLogger(Furious.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        } 
+
 
     }
 

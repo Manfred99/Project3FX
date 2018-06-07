@@ -29,8 +29,9 @@ public  class   BufferMemory {
     private static int furiousI;
     private static int furiousJ;
     private static boolean callejonFurious;
+   
     BufferMemoryFurious memoryFurious = new BufferMemoryFurious();
-    
+    BufferMemoryFast memoryFast = new BufferMemoryFast();
     
     public BufferMemory() {
     }
@@ -70,6 +71,7 @@ public  class   BufferMemory {
     public static int getItemI() {
         return itemI;
     }
+    
 
     public static void setItemI(int itemI) {
         BufferMemory.itemI = itemI;
@@ -86,7 +88,7 @@ public  class   BufferMemory {
        
         return !memoryFurious.isEaten()&&((runI == itemI&&runJ==itemJ)||(runI == itemI&&runJ==itemJ)||(runI == itemI&&runJ==itemJ)||(runI == itemI&&runJ==itemJ));
     }
-    
+   
    
 
 }

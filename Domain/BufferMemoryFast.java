@@ -16,9 +16,22 @@ public class BufferMemoryFast {
     private static boolean callejonfast;
     private static int itemI;
     private static int itemJ;
+    private static boolean stop;
+    TimeSeconds tm = new TimeSeconds();
     BufferMemoryFurious memoryFurious = new BufferMemoryFurious();
+    
 
     public BufferMemoryFast() {
+    }
+
+    public boolean isStop() {
+        stop = tm.isStopFast();
+        System.out.println(stop);
+        return stop;
+    }
+
+    public static void setStop(boolean stop) {
+        BufferMemoryFast.stop = stop;
     }
 
     public static int getFastI() {
@@ -61,7 +74,9 @@ public class BufferMemoryFast {
         BufferMemoryFast.itemJ = itemJ;
     }
      public boolean getEqualsJIFast(){
+         
         
-        return !memoryFurious.isEaten()&&((fastI == itemI&&fastJ==itemJ)||(fastI == itemI&&fastJ==itemJ)||(fastI == itemI&&fastJ==itemJ)||(fastI == itemI&&fastJ==itemJ));
+        return !memoryFurious.isEaten()&&(fastI == itemI&&fastJ==itemJ);
     }
+
 }

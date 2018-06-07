@@ -7,6 +7,7 @@ import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.scene.image.Image;
+import tdaCola.ColaException;
 
 /**
  * Clase encargada de hacer que el sprite haga la simulacion de que se mueve en
@@ -19,8 +20,10 @@ public class Fast extends Character {
     BlockNum[][] matrixNum;
     BlockBool[][] matrixBool;
     boolean callejon = false;
-    long sleep = 8;
+    long sleep = 5;
     BufferMemoryFast memory = new BufferMemoryFast();
+    TimeSeconds time = new TimeSeconds();
+    
     int typeOfThread;
     boolean changeImages;
     int i;
@@ -32,6 +35,7 @@ public class Fast extends Character {
     int x = 0;
     int w = 0;
     int s = 0;
+    int r = 8;
     int h = 0;
     private static Random random = new Random();
 
@@ -54,7 +58,7 @@ public class Fast extends Character {
         this.typeOfThread = 1;
         this.i = i;
         this.j = j;
-        
+
         setSprite();
 
     }
@@ -70,8 +74,8 @@ public class Fast extends Character {
 
         ArrayList<Image> sprite = super.getSprite();
 
-        for (int i = 0; i < 8; i++) {
-            sprite.add(new Image(new FileInputStream("src/FastImages/Fast" + i + ".png")));
+        for (int i = 0; i <= 16; i++) {
+            sprite.add(new Image(new FileInputStream("src/FastImages/redDinoRunning" + i + ".png")));
         }
     }
 
@@ -121,29 +125,36 @@ public class Fast extends Character {
 
         for (int k = numBlock.getB(); k < numBlock.getD(); k++) {
             try {
-                
+
                 if (s == 8) {
                     s = 0;
                 }
-                if (h == 10) {
-                    super.setImage(sprite.get(s++));
-                } else if (h == 35) {
-                    super.setImage(sprite.get(s++));
-                } else if (h == 50) {
-                    super.setImage(sprite.get(s++));
+                if (r == 16) {
+                    r = 8;
                 }
+                if (time.getPersentage() > 65) {
+                    if (h == 10) {
+                        super.setImage(sprite.get(s++));
+                    } else if (h == 35) {
+                        super.setImage(sprite.get(s++));
+                    } else if (h == 50) {
+                        super.setImage(sprite.get(s++));
+                    }
+                } else if (time.getPersentage() == 33) {
+                    if (h == 10) {
+                        super.setImage(sprite.get(r++));
+                    } else if (h == 35) {
+                        super.setImage(sprite.get(r++));
+                    } else if (h == 50) {
+                        super.setImage(sprite.get(r++));
+                    }
+                }
+
                 h++;
 
                 super.setX(k);
                 super.setY(w);
-                if (memory.getEqualsJIFast()) {
-                    if (callejon) {
-                        callejon = false;
-                    } else {
-                        callejon = true;
-                    }
-
-                }
+                
                 Thread.sleep(sleep);
             } catch (InterruptedException ex) {
                 Logger.getLogger(Fast.class.getName()).log(Level.SEVERE, null, ex);
@@ -160,27 +171,35 @@ public class Fast extends Character {
         for (int k = numBlock.getC() - 80; k >= numBlock.getA() - 80; k--) {
 
             try {
-                
+
                 if (s == 8) {
                     s = 0;
-                } else if (h == 10) {
-                    super.setImage(sprite.get(s++));
-                } else if (h == 35) {
-                    super.setImage(sprite.get(s++));
-                } else if (h == 50) {
-                    super.setImage(sprite.get(s++));
                 }
+                if (r == 16) {
+                    r = 8;
+                }
+                if (time.getPersentage() > 65) {
+                    if (h == 10) {
+                        super.setImage(sprite.get(s++));
+                    } else if (h == 35) {
+                        super.setImage(sprite.get(s++));
+                    } else if (h == 50) {
+                        super.setImage(sprite.get(s++));
+                    }
+                } else if (time.getPersentage() == 33) {
+                    if (h == 10) {
+                        super.setImage(sprite.get(r++));
+                    } else if (h == 35) {
+                        super.setImage(sprite.get(r++));
+                    } else if (h == 50) {
+                        super.setImage(sprite.get(r++));
+                    }
+                }
+
                 h++;
                 super.setX(x);
                 super.setY(k);
-                if (memory.getEqualsJIFast()) {
-                    if (callejon) {
-                        callejon = false;
-                    } else {
-                        callejon = true;
-                    }
-
-                }
+                
                 Thread.sleep(sleep);
             } catch (InterruptedException ex) {
                 Logger.getLogger(Fast.class.getName()).log(Level.SEVERE, null, ex);
@@ -196,29 +215,36 @@ public class Fast extends Character {
         h = 0;
         for (int k = numBlock.getA(); k < numBlock.getC(); k++) {
             try {
-                
+
                 if (s == 8) {
                     s = 0;
-                } else if (h == 10) {
-                    super.setImage(sprite.get(s++));
-                } else if (h == 35) {
-                    super.setImage(sprite.get(s++));
-                } else if (h == 50) {
-                    super.setImage(sprite.get(s++));
                 }
+                if (r == 16) {
+                    r = 8;
+                }
+                if (time.getPersentage() > 65) {
+                    if (h == 10) {
+                        super.setImage(sprite.get(s++));
+                    } else if (h == 35) {
+                        super.setImage(sprite.get(s++));
+                    } else if (h == 50) {
+                        super.setImage(sprite.get(s++));
+                    }
+                } else if (time.getPersentage() == 33) {
+                    if (h == 10) {
+                        super.setImage(sprite.get(r++));
+                    } else if (h == 35) {
+                        super.setImage(sprite.get(r++));
+                    } else if (h == 50) {
+                        super.setImage(sprite.get(r++));
+                    }
+                }
+
                 h++;
 
                 super.setX(x);
                 super.setY(k);
-                if (memory.getEqualsJIFast()) {
-
-                    if (callejon) {
-                        callejon = false;
-                    } else {
-                        callejon = true;
-                    }
-
-                }
+                
                 Thread.sleep(sleep);
             } catch (InterruptedException ex) {
                 Logger.getLogger(Fast.class.getName()).log(Level.SEVERE, null, ex);
@@ -236,29 +262,36 @@ public class Fast extends Character {
         for (int k = numBlock.getD() - 66; k > numBlock.getB() - 66; k--) {
 
             try {
-                
+
                 if (s == 8) {
                     s = 0;
-                } else if (h == 10) {
-                    super.setImage(sprite.get(s++));
-                } else if (h == 35) {
-                    super.setImage(sprite.get(s++));
-                } else if (h == 50) {
-                    super.setImage(sprite.get(s++));
                 }
+                if (r == 16) {
+                    r = 8;
+                }
+                if (time.getPersentage() > 65) {
+                    if (h == 10) {
+                        super.setImage(sprite.get(s++));
+                    } else if (h == 35) {
+                        super.setImage(sprite.get(s++));
+                    } else if (h == 50) {
+                        super.setImage(sprite.get(s++));
+                    }
+                } else if (time.getPersentage() == 33) {
+                    if (h == 10) {
+                        super.setImage(sprite.get(r++));
+                    } else if (h == 35) {
+                        super.setImage(sprite.get(r++));
+                    } else if (h == 50) {
+                        super.setImage(sprite.get(r++));
+                    }
+                }
+
                 h++;
 
                 super.setX(k);
                 super.setY(w);
-                if (memory.getEqualsJIFast()) {
-
-                    if (callejon) {
-                        callejon = false;
-                    } else {
-                        callejon = true;
-                    }
-
-                }
+                
                 Thread.sleep(sleep);
             } catch (InterruptedException ex) {
                 Logger.getLogger(Fast.class.getName()).log(Level.SEVERE, null, ex);
@@ -277,64 +310,19 @@ public class Fast extends Character {
         try {
             while (true) {
 
-                if (i + 1 == 7 || j + 1 == 14) {
-                    Thread.sleep(100000);
-                } else if (i - 1 == -1 || j - 1 == -1) {
-                    callejon = false;
-                }
+                if (!memory.isStop()) {
 
-                memory.setCallejonfast(callejon);
-                if (!callejon) {
-
-                    if (blockTrue(matrixBool[i][j + 1])) {
-
-                        memory.setFastI(i);
-                        memory.setFastJ(j);
-                        numBlock = matrixNum[i][j];
-
-                        derecha(numBlock);
-
-                        changeImages = false;
-                        prove();
-
-                        //Thread.sleep(100);
-                    } else if (matrixBool[i][j].getA()||matrixBool[i][j].getC()) {
-
-                        memory.setFastI(i);
-                        memory.setFastJ(j);
-                        numBlock = matrixNum[i][j];
-                        if(blockTrue(matrixBool[i+1][j])&&blockTrue(matrixBool[i-1][j])){
-                            int random = getAleatorio(2);
-                            if(random==1){
-                                arriba(numBlock);
-                            }else{
-                                abajo(numBlock);
-                            }
-                        }else if(blockTrue(matrixBool[i+1][j])&&!blockTrue(matrixBool[i-1][j])){
-                            abajo(numBlock);
-                        }else if(!blockTrue(matrixBool[i+1][j])&&blockTrue(matrixBool[i-1][j])){
-                            arriba(numBlock);
-                        }
-                        
-
-                        changeImages = false;
-                        prove();
-                        //Thread.sleep(600);
-                    }
-
-                    else {
-                        callejon = true;
-                    }
-
-                }
-                if (callejon) {
-
-                    if (i == 0 || j == 0) {
-
+                    if (i + 1 == 7 || j + 1 == 14) {
+                        Thread.sleep(100000);
+                    } else if (i - 1 == -1 || j - 1 == -1) {
                         callejon = false;
-                    } else if (matrixBool[i][j].getA() && matrixBool[i][j].getB() && matrixBool[i][j].getC() && matrixBool[i][j].getD()) {
-                        int aleatorio = getAleatorio(4);
-                        if (aleatorio == 1) {
+                    }
+                    
+
+                    memory.setCallejonfast(callejon);
+                    if (!callejon) {
+
+                        if (blockTrue(matrixBool[i][j + 1])) {
 
                             memory.setFastI(i);
                             memory.setFastJ(j);
@@ -344,96 +332,153 @@ public class Fast extends Character {
 
                             changeImages = false;
                             prove();
-                        } else if (aleatorio == 2) {
-                            memory.setFastI(i);
-                            memory.setFastJ(j);
-                            numBlock = matrixNum[i][j];
 
-                            izquierda(numBlock);
-                            changeImages = false;
-                            prove();
-
-                        } else if (aleatorio == 3) {
+                            //Thread.sleep(100);
+                        } else if (matrixBool[i][j].getA() || matrixBool[i][j].getC()) {
 
                             memory.setFastI(i);
                             memory.setFastJ(j);
                             numBlock = matrixNum[i][j];
-
-                            arriba(numBlock);
-
-                            changeImages = false;
-                            prove();
-
-                        } else if (aleatorio == 4) {
-                            memory.setFastI(i);
-                            memory.setFastJ(j);
-                            numBlock = matrixNum[i][j];
-
-                            abajo(numBlock);
-
-                            changeImages = false;
-                            prove();
-
-                        }
-                    } else if (matrixBool[i][j].getA() && !matrixBool[i][j].getB() && !matrixBool[i][j].getC() && !matrixBool[i][j].getD()) {
-                        memory.setFastI(i);
-                        memory.setFastJ(j);
-                        numBlock = matrixNum[i][j];
-                        abajo(numBlock);
-
-                        changeImages = false;
-                        prove();
-
-                    } else if (matrixBool[i][j].getA() && matrixBool[i][j].getD()) {
-                        int aleatorio = getAleatorio(3);
-                        if (aleatorio == 1) {
-                            callejon = false;
-                        } else if (aleatorio == 2 && blockTrue(matrixBool[i - 1][j])) {
-                            memory.setFastI(i);
-                            memory.setFastJ(j);
-                            numBlock = matrixNum[i][j];
-                            arriba(numBlock);
+                            if (blockTrue(matrixBool[i + 1][j]) && blockTrue(matrixBool[i - 1][j])) {
+                                int random = getAleatorio(2);
+                                if (random == 1) {
+                                    arriba(numBlock);
+                                } else {
+                                    abajo(numBlock);
+                                }
+                            } else if (blockTrue(matrixBool[i + 1][j]) && !blockTrue(matrixBool[i - 1][j])) {
+                                abajo(numBlock);
+                            } else if (!blockTrue(matrixBool[i + 1][j]) && blockTrue(matrixBool[i - 1][j])) {
+                                arriba(numBlock);
+                            }
 
                             changeImages = false;
                             prove();
+                            //Thread.sleep(600);
                         } else {
                             callejon = true;
                         }
+                        
+                    }
+                    if (callejon) {
 
-                    } else if (matrixBool[i][j].getC() && !matrixBool[i][j].getB()) {
-                        int aleatorio = getAleatorio(2);
-                        if (aleatorio == 1 && blockTrue(matrixBool[i - 1][j])) {
-                            memory.setFastI(i);
-                            memory.setFastJ(j);
-                            numBlock = matrixNum[i][j];
+                        if (i == 0 || j == 0) {
 
-                            arriba(numBlock);
+                            callejon = false;
+                        } else if (matrixBool[i][j].getA() && matrixBool[i][j].getB() && matrixBool[i][j].getC() && matrixBool[i][j].getD()) {
+                            int aleatorio = getAleatorio(4);
+                            if (aleatorio == 1) {
 
-                            changeImages = false;
-                            prove();
+                                memory.setFastI(i);
+                                memory.setFastJ(j);
+                                numBlock = matrixNum[i][j];
 
-                        } else if (aleatorio == 2 && blockTrue(matrixBool[i + 1][j])) {
+                                derecha(numBlock);
+
+                                changeImages = false;
+                                prove();
+                            } else if (aleatorio == 2) {
+                                memory.setFastI(i);
+                                memory.setFastJ(j);
+                                numBlock = matrixNum[i][j];
+
+                                izquierda(numBlock);
+                                changeImages = false;
+                                prove();
+
+                            } else if (aleatorio == 3) {
+
+                                memory.setFastI(i);
+                                memory.setFastJ(j);
+                                numBlock = matrixNum[i][j];
+
+                                arriba(numBlock);
+
+                                changeImages = false;
+                                prove();
+
+                            } else if (aleatorio == 4) {
+                                memory.setFastI(i);
+                                memory.setFastJ(j);
+                                numBlock = matrixNum[i][j];
+
+                                abajo(numBlock);
+
+                                changeImages = false;
+                                prove();
+
+                            }
+                        } else if (matrixBool[i][j].getA() && !matrixBool[i][j].getB() && !matrixBool[i][j].getC() && !matrixBool[i][j].getD()) {
                             memory.setFastI(i);
                             memory.setFastJ(j);
                             numBlock = matrixNum[i][j];
                             abajo(numBlock);
+
                             changeImages = false;
                             prove();
-                        }
 
-                    } else if (matrixBool[i][j].getC() && matrixBool[i][j].getD()) {
-                        int aleatorio = getAleatorio(2);
+                        } else if (matrixBool[i][j].getA() && matrixBool[i][j].getD()) {
+                            int aleatorio = getAleatorio(3);
+                            if (aleatorio == 1) {
+                                callejon = false;
+                            } else if (aleatorio == 2 && blockTrue(matrixBool[i - 1][j])) {
+                                memory.setFastI(i);
+                                memory.setFastJ(j);
+                                numBlock = matrixNum[i][j];
+                                arriba(numBlock);
 
-                        if (aleatorio == 1 && blockTrue(matrixBool[i + 1][j])) {
+                                changeImages = false;
+                                prove();
+                            } else {
+                                callejon = true;
+                            }
+                            
+                        } else if (matrixBool[i][j].getC() && !matrixBool[i][j].getB()) {
+                            int aleatorio = getAleatorio(2);
+                            if (aleatorio == 1 && blockTrue(matrixBool[i - 1][j])) {
+                                memory.setFastI(i);
+                                memory.setFastJ(j);
+                                numBlock = matrixNum[i][j];
 
-                            memory.setFastI(i);
-                            memory.setFastJ(j);
-                            numBlock = matrixNum[i][j];
-                            abajo(numBlock);
-                            changeImages = false;
-                            prove();
-                        } else if (aleatorio == 2 && blockTrue(matrixBool[i][j - 1])) {
+                                arriba(numBlock);
 
+                                changeImages = false;
+                                prove();
+
+                            } else if (aleatorio == 2 && blockTrue(matrixBool[i + 1][j])) {
+                                memory.setFastI(i);
+                                memory.setFastJ(j);
+                                numBlock = matrixNum[i][j];
+                                abajo(numBlock);
+                                changeImages = false;
+                                prove();
+                            }
+                            
+                        } else if (matrixBool[i][j].getC() && matrixBool[i][j].getD()) {
+                            int aleatorio = getAleatorio(2);
+
+                            if (aleatorio == 1 && blockTrue(matrixBool[i + 1][j])) {
+
+                                memory.setFastI(i);
+                                memory.setFastJ(j);
+                                numBlock = matrixNum[i][j];
+                                abajo(numBlock);
+                                changeImages = false;
+                                prove();
+                            } else if (aleatorio == 2 && blockTrue(matrixBool[i][j - 1])) {
+
+                                memory.setFastI(i);
+                                memory.setFastJ(j);
+                                numBlock = matrixNum[i][j];
+
+                                izquierda(numBlock);
+                                changeImages = false;
+                                prove();
+
+                            }
+
+                            //Thread.sleep(100);
+                        } else if (matrixBool[i][j].getA() && matrixBool[i][j].getB() && !matrixBool[i][j].getC() && !matrixBool[i][j].getD() && blockTrue(matrixBool[i][j - 1])) {
                             memory.setFastI(i);
                             memory.setFastJ(j);
                             numBlock = matrixNum[i][j];
@@ -442,63 +487,56 @@ public class Fast extends Character {
                             changeImages = false;
                             prove();
 
+                            //Thread.sleep(100);
+                        } else if (matrixBool[i][j].getC() && matrixBool[i][j].getB() && blockTrue(matrixBool[i][j - 1])) {
+
+                            memory.setFastI(i);
+                            memory.setFastJ(j);
+                            numBlock = matrixNum[i][j];
+
+                            izquierda(numBlock);
+
+                            changeImages = false;
+                            prove();
+
+                        } else if (blockTrue(matrixBool[i][j - 1])) {
+                            memory.setFastI(i);
+                            memory.setFastJ(j);
+                            numBlock = matrixNum[i][j];
+
+                            izquierda(numBlock);
+                            changeImages = false;
+                            prove();
+
+                            //Thread.sleep(100);
+                        } else if (blockTrue(matrixBool[i][j + 1])) {
+
+                            memory.setFastI(i);
+                            memory.setFastJ(j);
+                            numBlock = matrixNum[i][j];
+
+                            derecha(numBlock);
+
+                            changeImages = false;
+                            prove();
+
+                            //Thread.sleep(100);
+                        } else {
+                            callejon = false;
                         }
-
-                        //Thread.sleep(100);
-                    } else if (matrixBool[i][j].getA() && matrixBool[i][j].getB() && !matrixBool[i][j].getC() && !matrixBool[i][j].getD() && blockTrue(matrixBool[i][j - 1])) {
-                        memory.setFastI(i);
-                        memory.setFastJ(j);
-                        numBlock = matrixNum[i][j];
-
-                        izquierda(numBlock);
-                        changeImages = false;
-                        prove();
-
-                        //Thread.sleep(100);
-                    } else if (matrixBool[i][j].getC() && matrixBool[i][j].getB() && blockTrue(matrixBool[i][j - 1])) {
-
-                        memory.setFastI(i);
-                        memory.setFastJ(j);
-                        numBlock = matrixNum[i][j];
-
-                        izquierda(numBlock);
-
-                        changeImages = false;
-                        prove();
-
-                    } else if (blockTrue(matrixBool[i][j - 1])) {
-                        memory.setFastI(i);
-                        memory.setFastJ(j);
-                        numBlock = matrixNum[i][j];
-
-                        izquierda(numBlock);
-                        changeImages = false;
-                        prove();
-
-                        //Thread.sleep(100);
-                    } else if (blockTrue(matrixBool[i][j + 1])) {
-
-                        memory.setFastI(i);
-                        memory.setFastJ(j);
-                        numBlock = matrixNum[i][j];
-
-                        derecha(numBlock);
-
-                        changeImages = false;
-                        prove();
-
-                        //Thread.sleep(100);
-                    } else {
-                        callejon = false;
+                        
                     }
-//
-                }
-
+                    
+                } else {
+                    ArrayList<Image> sprite = super.getSprite();
+                    super.setImage(sprite.get(16));
+                }//isStop
             }
         } catch (InterruptedException ex) {
 
             Logger.getLogger(Fast.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        } 
+        
 
     }
 

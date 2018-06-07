@@ -12,6 +12,10 @@ import javafx.scene.control.Label;
 public class StopWatch extends Thread {
 
     Label showTime;
+    TimeSeconds tm = new TimeSeconds();
+    private int contSeconds = 0;
+    
+    private int actualSeconds = 0;
 
     public StopWatch(Label timer) {
         super();
@@ -40,6 +44,7 @@ public class StopWatch extends Thread {
         if (Window.mil > 59) {
             Window.mil = 0;
             Window.sec++;
+            actualSeconds=0;
         } else if (Window.sec > 59) {
             Window.sec = 0;
             Window.min++;
@@ -50,7 +55,17 @@ public class StopWatch extends Thread {
         textmin += Window.min;
 
         String watch = textmin + ":" + textsec + ":" + textmil;
+        
         Platform.runLater(() -> showTime.setText(watch));
-
+        
+        if(Window.sec!=0&&Window.sec%5==0&&actualSeconds++<1){
+            if(contSeconds==15){
+                contSeconds=0;
+            }
+            
+            contSeconds+=5;
+            tm.setPersentage(5);
+            
+        }
     }
 }

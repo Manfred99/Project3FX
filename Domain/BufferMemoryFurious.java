@@ -17,9 +17,11 @@ public class BufferMemoryFurious {
     private static boolean callejonFurious;
     private static int itemI;
     private static int itemJ;
-    private static boolean eaten =false;
+    private static boolean eaten;
+    
     
     public BufferMemoryFurious() {
+        eaten = false;
     }
 
     public static boolean isEaten() {
@@ -105,4 +107,5 @@ public class BufferMemoryFurious {
         
         return !isEaten()&&((furiousI == itemI&&furiousJ==itemJ)||(furiousI == itemI&&furiousJ==itemJ)||(furiousI == itemI&&furiousJ==itemJ)||(furiousI == itemI&&furiousJ==itemJ));
     }
+    
 }

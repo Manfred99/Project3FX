@@ -7,6 +7,7 @@ import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.scene.image.Image;
+import tdaCola.ColaException;
 
 /**
  * Clase encargada de hacer que el sprite haga la simulacion de que se mueve en
@@ -19,8 +20,9 @@ public class Smart extends Character {
     BlockNum[][] matrixNum;
     BlockBool[][] matrixBool;
     boolean callejon = false;
-    long sleep = 13;
+    long sleep = 7;
     BufferMemory memory = new BufferMemory();
+   
     int typeOfThread;
     boolean changeImages;
     int i;
@@ -139,9 +141,10 @@ public class Smart extends Character {
                 super.setX(k);
                 super.setY(w);
                 if (memory.getEqualsJI()) {
-                    System.out.println(memory.getItemI());
+                    //System.out.println(memory.getItemI());
                     sleep = 3;
                 }
+                
                 Thread.sleep(sleep);
             } catch (InterruptedException ex) {
                 Logger.getLogger(Smart.class.getName()).log(Level.SEVERE, null, ex);
@@ -178,6 +181,7 @@ public class Smart extends Character {
 
                     sleep = 3;
                 }
+                
                 Thread.sleep(sleep);
             } catch (InterruptedException ex) {
                 Logger.getLogger(Smart.class.getName()).log(Level.SEVERE, null, ex);
@@ -214,6 +218,7 @@ public class Smart extends Character {
 
                     sleep = 3;
                 }
+                
                 Thread.sleep(sleep);
             } catch (InterruptedException ex) {
                 Logger.getLogger(Smart.class.getName()).log(Level.SEVERE, null, ex);
@@ -252,6 +257,7 @@ public class Smart extends Character {
 
                     sleep = 3;
                 }
+                
                 Thread.sleep(sleep);
             } catch (InterruptedException ex) {
                 Logger.getLogger(Smart.class.getName()).log(Level.SEVERE, null, ex);
@@ -276,6 +282,9 @@ public class Smart extends Character {
                 } else if (i - 1 == -1 || j - 1 == -1) {
                     callejon = false;
                 }
+                
+                
+                
                 
                 memory.setCallejon(callejon);
                 if (!callejon) {
@@ -318,6 +327,7 @@ public class Smart extends Character {
                     else {
                         callejon = true;
                     }
+
 
                 }
                 if (callejon) {
@@ -484,14 +494,16 @@ public class Smart extends Character {
                     } else {
                         callejon = false;
                     }
+                    
 //
                 }
-
+                
             }
         } catch (InterruptedException ex) {
 
             Logger.getLogger(Smart.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        } 
+        
 
     }
 

@@ -194,7 +194,7 @@ public class Window extends Application implements Runnable {
                 startThreadWatch();
 
                 this.start = true;
-//                    this.fast.start();
+
                 this.smart.start();
                 this.furious.start();
                 this.item.start();
@@ -214,14 +214,14 @@ public class Window extends Application implements Runnable {
             matrixBool = important.fillMatrixBool7();
             matrixNum = important.fillMatixNum();
 
-//            this.fast = new Fast(80, 190, 0, matrixBool,matrixNum,1,0,10);
+
             this.item = new MovingItem(0, 0, 0, matrixBool, matrixNum, false, 3, 5);
             this.thread = new Thread(this);
 
             this.thread.start();
-            this.smart = new Smart(80, 190, 0, matrixBool, matrixNum, 1, 0);
-            this.furious = new Furious(80, 190, 0, matrixBool, matrixNum, 3, 0);
-            this.fast = new Fast(80, 190, 0, matrixBool, matrixNum, 5, 0);
+            this.smart = new Smart(80, 190, 0, matrixBool, matrixNum, 3, 0);
+            this.furious = new Furious(80, 190, 0, matrixBool, matrixNum, 5, 0);
+            this.fast = new Fast(80, 190, 0, matrixBool, matrixNum, 1, 0);
         } catch (BufferOverflowException ex) {
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Window.class.getName()).log(Level.SEVERE, null, ex);
